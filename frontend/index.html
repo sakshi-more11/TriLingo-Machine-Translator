@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TriLingo — English · Hindi · Marathi Translator</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <div class="app">
+
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark">译</span>
+        <h1>Tri<span class="accent">Lingo</span></h1>
+      </div>
+      <p class="tagline">Real-time voice &amp; text translation across English, Hindi &amp; Marathi</p>
+    </header>
+
+    <main class="translator-card">
+
+      <div class="lang-bar">
+        <div class="lang-select" id="srcLangSelect" data-value="hi">
+          <label>From</label>
+          <button type="button" class="select-trigger">
+            <span class="select-label">Hindi</span>
+            <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="select-options">
+            <li data-value="en">English</li>
+            <li data-value="hi" class="active">Hindi</li>
+            <li data-value="mr">Marathi</li>
+          </ul>
+        </div>
+
+        <button id="swapBtn" class="swap-btn" title="Swap languages">
+          <svg viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="lang-select" id="tgtLangSelect" data-value="en">
+          <label>To</label>
+          <button type="button" class="select-trigger">
+            <span class="select-label">English</span>
+            <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="select-options">
+            <li data-value="en" class="active">English</li>
+            <li data-value="hi">Hindi</li>
+            <li data-value="mr">Marathi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panels">
+
+        <section class="panel">
+          <div class="panel-head">
+            <span>Input</span>
+            <button id="micBtn" class="mic-btn" title="Speak">
+              <svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z" fill="currentColor"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+              <span class="mic-pulse"></span>
+            </button>
+          </div>
+          <textarea id="inputText" placeholder="Type here, or use romanized Hinglish (e.g. 'kaise ho') — it's auto-detected..."></textarea>
+          <div class="hint" id="inputHint"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span>Translation</span>
+            <button id="speakBtn" class="icon-btn" title="Listen">
+              <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div id="outputText" class="output-text" aria-live="polite"></div>
+
+          <div class="confidence-wrap">
+            <div class="confidence-label">
+              <span>Confidence</span>
+              <span id="confidenceValue">—</span>
+            </div>
+            <div class="confidence-track">
+              <div id="confidenceFill" class="confidence-fill"></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <button id="translateBtn" class="translate-btn">
+        <span class="btn-label">Translate</span>
+        <span class="btn-spinner"></span>
+      </button>
+
+      <div id="statusMsg" class="status-msg"></div>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>LSTM Seq2Seq → Transformer &middot; Whisper ASR &middot; gTTS &middot; Hinglish-aware</p>
+    </footer>
+
+  </div>
+
+  <audio id="ttsAudio" hidden></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
